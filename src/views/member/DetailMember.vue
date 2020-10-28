@@ -13,7 +13,8 @@
 export default {
   data: () => ({
     id: 0,
-    member: {}
+    member: {},
+    marga: {}
   }),
   // mounted() {
   //   // console.log();
@@ -38,6 +39,20 @@ export default {
         .then(res => {
           console.log(res.data);
           this.member = res.data;
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    },
+    getMarga(){
+      // http://apikompag.maxproitsolution.com/api/statistik/marga
+       this.$http
+        .get(
+          `http://apikompag.maxproitsolution.com/api/statistik/marga`
+        )
+        .then(res => {
+          // console.log(res.data);
+          this.marga = res.data.data;
         })
         .catch(err => {
           console.log(err);

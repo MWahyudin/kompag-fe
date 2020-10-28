@@ -57,63 +57,50 @@
             <div class="mt-2 mb-4">
               <label class="text-sm">Marga</label>
               <v-select
+                :reduce="marga => marga.id"
                 v-model="member.Marga"
-                :options="countryOptions"
+                :options="marga"
+                label="nama"
                 :dir="$vs.rtl ? 'rtl' : 'ltr'"
               />
             </div>
-            <!-- <vs-input
-              class="w-full"
-              label-placeholder="Generasi"
-              v-model="generasi"
-            ></vs-input> -->
-
-            <!-- <vs-input
-              class="w-full my-base"
-              label-placeholder="Parompuon"
-              v-model="member.Parompuon"
-            ></vs-input> -->
             <div class="mt-2 mb-4">
               <label class="text-sm">Generasi</label>
               <v-select
-                v-model="generasi"
-                :options="countryOptions"
+                :reduce="generasi => generasi.id"
+                v-model="generasi.nama"
+                :options="generasi"
+                label="nama"
                 :dir="$vs.rtl ? 'rtl' : 'ltr'"
               />
             </div>
             <div class="mt-2 mb-4">
               <label class="text-sm">Parompuon</label>
               <v-select
+                :reduce="parompuon => parompuon.id"
+                label="nama"
                 v-model="member.Parompuon"
-                :options="countryOptions"
+                :options="parompuon"
                 :dir="$vs.rtl ? 'rtl' : 'ltr'"
               />
             </div>
-
-            <!-- <vs-input
-              class="w-full my-base"
-              label-placeholder="Wilayah keanggotaan"
-              v-model="member.Wilayah"
-            ></vs-input> -->
-
-            <!-- <vs-input
-              class="w-full my-base"
-              label-placeholder="Sektor"
-              v-model="member.Sektor"
-            ></vs-input> -->
             <div class="mt-2 mb-4">
               <label class="text-sm">Wilayah</label>
               <v-select
+                :reduce="wilayah => wilayah.id"
                 v-model="member.Wilayah"
-                :options="countryOptions"
+                :options="wilayah"
+                label="nama"
                 :dir="$vs.rtl ? 'rtl' : 'ltr'"
               />
             </div>
-             <div class="mt-2 mb-8">
+            <div class="mt-2 mb-8">
               <label class="text-sm">Sektor</label>
               <v-select
+                :reduce="sektor => sektor.id"
                 v-model="member.Sektor"
-                :options="countryOptions"
+                label="nama"
+                :options="sektor"
                 :dir="$vs.rtl ? 'rtl' : 'ltr'"
               />
             </div>
@@ -184,7 +171,7 @@ import UserSettingsInfo from "./UserSettingsInfo.vue";
 import UserSettingsSocialLinks from "./UserSettingsSocialLinks.vue";
 import UserSettingsConnections from "./UserSettingsConnections.vue";
 import UserSettingsNotifications from "./UserSettingsNotifications.vue";
-import vSelect from 'vue-select'
+import vSelect from "vue-select";
 
 export default {
   components: {
@@ -195,7 +182,6 @@ export default {
     UserSettingsConnections,
     UserSettingsNotifications,
     vSelect
-
   },
   // props: {
   //   member: {
@@ -205,21 +191,13 @@ export default {
   data() {
     return {
       member: {},
-      generasi: "generasi default",
-      name: this.$store.state.AppActiveUser.displayName,
-      email: "john@admin.com",
-      company: "SnowMash Technologies Pvt Ltd",
-       countryOptions: [
-        { label: "Australia",  value: "australia"  },
-        { label: "France",     value: "france"     },
-        { label: "Germany",    value: "germany"    },
-        { label: "India",      value: "india"      },
-        { label: "Jordan",     value: "jordan"     },
-        { label: "Morocco",    value: "morocco"    },
-        { label: "Portuguese", value: "portuguese" },
-        { label: "Syria",      value: "syria"      },
-        { label: "USA",        value: "usa"        },
-      ],
+      marga: [],
+      sektor: [],
+      wilayah: [],
+      generasi: [],
+      parompuon: [],
+      // generasi: "generasi default",
+      name: this.$store.state.AppActiveUser.displayName
     };
   },
   computed: {
@@ -230,11 +208,16 @@ export default {
       return this.$store.state.windowWidth < 768;
     }
   },
-  
+
   //  created() {
   //   //  this.username = this.member.Nama;
   //  },
   created() {
+    this.getMarga();
+    this.getSektor();
+    this.getWilayah();
+    this.getGenerasi();
+    this.getParompuon();
     //  this.username = this.member.Nama;
     this.id = this.$route.params.id;
     // console.log(this.$route.params.idmember);
@@ -252,6 +235,66 @@ export default {
         .then(res => {
           console.log(res.data);
           this.member = res.data;
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    },
+    getMarga() {
+      // http://apikompag.maxproitsolution.com/api/statistik/marga
+      this.$http
+        .get(`http://apikompag.maxproitsolution.com/api/statistik/marga`)
+        .then(res => {
+          // console.log(res.data);
+          this.marga = res.data.data;
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    },
+    getSektor() {
+      // http://apikompag.maxproitsolution.com/api/statistik/Sektor
+      this.$http
+        .get(`http://apikompag.maxproitsolution.com/api/statistik/sektor`)
+        .then(res => {
+          // console.log(res.data);
+          this.sektor = res.data.data;
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    },
+    getWilayah() {
+      // http://apikompag.maxproitsolution.com/api/statistik/Wilayah
+      this.$http
+        .get(`http://apikompag.maxproitsolution.com/api/statistik/wilayah`)
+        .then(res => {
+          // console.log(res.data);
+          this.wilayah = res.data.data;
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    },
+    getGenerasi() {
+      // http://apikompag.maxproitsolution.com/api/statistik/Generasi
+      this.$http
+        .get(`http://apikompag.maxproitsolution.com/api/statistik/generasi`)
+        .then(res => {
+          // console.log(res.data);
+          this.generasi = res.data.data;
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    },
+    getParompuon() {
+      // http://apikompag.maxproitsolution.com/api/statistik/Wilayah
+      this.$http
+        .get(`http://apikompag.maxproitsolution.com/api/statistik/parompuon`)
+        .then(res => {
+          // console.log(res.data);
+          this.parompuon = res.data.data;
         })
         .catch(err => {
           console.log(err);
