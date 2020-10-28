@@ -9,6 +9,15 @@
 
 <template>
   <div id="demo-basic-card">
+    <div class="d-flex flex-column">
+      <!-- <h1></h1> -->
+      <div class="d-flex justify-content-center mt-12">
+        <ring-loader v-show="loading" :color="color" :size="size"></ring-loader>
+      </div>
+      <!-- <pulse-loader  :color="color" :size="size"></pulse-loader> -->
+    </div>
+    <!-- <loading v-if="loading"></loading> -->
+    <!-- <loading/> -->
     <div class="vx-row">
       <div
         class="vx-col w-full sm:w-1/2 sm:w-1/3 mb-base"
@@ -27,15 +36,17 @@
           <p class="text-grey">subtitle</p>
           <p class="text-grey">{{ member.tgl_registrasi }}</p>
           <div class="flex justify-between flex-wrap">
-           <router-link :to="{ name: 'GeneralMember', params: {id: member.id_member} }">
+            <router-link
+              :to="{ name: 'GeneralMember', params: { id: member.id_member } }"
+            >
               <vs-button
-
-              class="mt-4 mr-2 shadow-lg"
-              type="gradient"
-              color="#7367F0"
-              gradient-color-secondary="#CE9FFC"
-              >Lihat detail</vs-button>
-           </router-link>
+                class="mt-4 mr-2 shadow-lg"
+                type="gradient"
+                color="#7367F0"
+                gradient-color-secondary="#CE9FFC"
+                >Lihat detail</vs-button
+              >
+            </router-link>
 
             >
             <!-- <router-link to=""></router-link> -->
@@ -55,12 +66,21 @@ import VuePerfectScrollbar from "vue-perfect-scrollbar";
 import { videoPlayer } from "vue-video-player";
 import VxTimeline from "@/components/timeline/VxTimeline.vue";
 // import "video.js/dist/video-js.css";
-import DetailMember from './DetailMember'
-
+import DetailMember from "./DetailMember";
+import loading from "@/components/loader/LoaderOverlay.vue";
+import PulseLoader from "vue-spinner/src/PulseLoader.vue";
+import RingLoader from "vue-spinner/src/RingLoader.vue";
 
 export default {
   data() {
     return {
+       color: '#cc181e',
+      color1: '#5bc0de',
+      size: '150px',
+      margin: '10px',
+      radius: '200px',
+      loading: false,
+      isLoading: true,
       showDetail: false,
       idMember: null,
       // card 1
@@ -74,7 +94,10 @@ export default {
     VuePerfectScrollbar,
     videoPlayer,
     VxTimeline,
-    DetailMember
+    DetailMember,
+    loading,
+    PulseLoader,
+    RingLoader
   },
   mounted() {
     // this.$refs.chatLogPS.$el.scrollTop = this.$refs.chatLog.scrollHeight;
@@ -90,16 +113,18 @@ export default {
   },
   created() {
     // Card 1
-    // this.$Progress.start();
-    this.$http
-      .get("http://apikompag.maxproitsolution.com/api/anggota/member")
-      .then(response => {
-        this.card_1 = response.data.data;
-        // this.$Progress.finish();
-      })
-      .catch(error => {
-        console.log(error);
-      });
+    (this.loading = true),
+      // this.$Progress.start();
+      this.$http
+        .get("http://apikompag.maxproitsolution.com/api/anggota/member")
+        .then(response => {
+          this.card_1 = response.data.data;
+          this.loading = false;
+          // this.$Progress.finish();
+        })
+        .catch(error => {
+          console.log(error);
+        });
   },
   methods: {
     // detail(idMembers) {

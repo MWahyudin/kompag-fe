@@ -16,6 +16,7 @@ dependencies:
   jquery: 3.5.1
   jsonwebtoken: 8.5.1
   material-icons: 0.3.1
+  nprogress: 0.2.0
   perfect-scrollbar: 1.5.0
   popper.js: 1.16.1
   postcss-rtl: 1.7.3
@@ -36,6 +37,8 @@ dependencies:
   vue-fullcalendar: 1.0.9
   vue-i18n: 8.22.1
   vue-instantsearch: 2.7.1_algoliasearch@3.35.1+vue@2.6.12
+  vue-loading-overlay: 3.4.2_vue@2.6.12
+  vue-nprogress: 0.2.0_vue@2.6.12
   vue-perfect-scrollbar: 0.1.0
   vue-prism-component: 1.2.0
   vue-progressbar: 0.7.5
@@ -45,6 +48,7 @@ dependencies:
   vue-select: 3.10.8_vue@2.6.12
   vue-simple-calendar: 4.4.0
   vue-simple-suggest: 1.10.3_vue@2.6.12
+  vue-spinner: 1.0.4
   vue-star-rating: 1.7.0
   vue-tour: 1.5.0
   vue-tree-halower: 1.8.3
@@ -7028,6 +7032,10 @@ packages:
       set-blocking: 2.0.0
     resolution:
       integrity: sha512-2uUqazuKlTaSI/dC8AzicUck7+IrEaOnN/e0jd3Xtt1KcGpwx30v50mL7oPyr/h9bL3E4aZccVwpwP+5W9Vjkg==
+  /nprogress/0.2.0:
+    dev: false
+    resolution:
+      integrity: sha1-y480xTIT2JVyP8urkH6UIq28r7E=
   /nth-check/1.0.2:
     dependencies:
       boolbase: 1.0.0
@@ -10501,6 +10509,26 @@ packages:
         optional: true
     resolution:
       integrity: sha512-Y67VnGGgVLH5Voostx8JBZgPQTlDQeOVBLOEsjc2cXbCYBKexSKEpOA56x0YZofoDOTszrLnIShyOX1p9uCEHA==
+  /vue-loading-overlay/3.4.2_vue@2.6.12:
+    dependencies:
+      vue: 2.6.12
+    dev: false
+    engines:
+      node: '>=6.9.0'
+      npm: '>=3.10.0'
+    peerDependencies:
+      vue: ^2.0.0
+    resolution:
+      integrity: sha512-xcB+NPjl76eA0uggm707x3ZFgrNosZXpynHipyS3K+rrK1NztOV49R1LY+/4ij5W1KYANp7eRI2EIHrxCpmWAw==
+  /vue-nprogress/0.2.0_vue@2.6.12:
+    dependencies:
+      nprogress: 0.2.0
+      vue: 2.6.12
+    dev: false
+    peerDependencies:
+      vue: '>=2'
+    resolution:
+      integrity: sha512-lTJvEQEt7Pxdc6jwUZf3m4t8emrrBecXxzSLT1G9eIjRQE4kOh7Y+ECjc5R1qrNyyuDqHCTKZMaH5bXy17IS5g==
   /vue-perfect-scrollbar/0.1.0:
     dev: false
     resolution:
@@ -10559,6 +10587,10 @@ packages:
       vue: ^2.5.0
     resolution:
       integrity: sha512-5yBGlVOQ5gvrkuoT6TtdVHLXy507EKN7X8vgXhPJsMbcJFuDTqzd6AFElSK7Bv4UwcKSU/o1OPzD9GBi86VuTQ==
+  /vue-spinner/1.0.4:
+    dev: false
+    resolution:
+      integrity: sha512-GNG2F+8BLX201JT/jUX+84Gsi3ZteVQwt9K7mues3ts9FcQ95dGn7uu6a5ndSxdYYUEzfh1KngZiOE0u+l4itA==
   /vue-star-rating/1.7.0:
     dependencies:
       vue: 2.6.12
@@ -11157,6 +11189,7 @@ specifiers:
   jsonwebtoken: ^8.5.1
   material-icons: ^0.3.1
   node-sass: ^4.12.0
+  nprogress: ^0.2.0
   perfect-scrollbar: ^1.4.0
   popper.js: ^1.16.1
   postcss-rtl: ^1.5.0
@@ -11181,6 +11214,8 @@ specifiers:
   vue-fullcalendar: ^1.0.9
   vue-i18n: ^8.11.2
   vue-instantsearch: ^2.2.1
+  vue-loading-overlay: ^3.4.2
+  vue-nprogress: ^0.2.0
   vue-perfect-scrollbar: ^0.1.0
   vue-prism-component: ^1.1.1
   vue-progressbar: ^0.7.5
@@ -11190,6 +11225,7 @@ specifiers:
   vue-select: ^3.1.0
   vue-simple-calendar: ^4.2.2
   vue-simple-suggest: ^1.9.5
+  vue-spinner: ^1.0.4
   vue-star-rating: ^1.6.1
   vue-template-compiler: ^2.6.10
   vue-tour: ^1.1.0
