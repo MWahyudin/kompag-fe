@@ -144,7 +144,7 @@
       </vs-tab>
       <vs-tab
         icon-pack="feather"
-        icon="icon-link-2"
+        icon="icon-users"
         :label="!isSmallerScreen ? 'Anggota keluarga' : ''"
       >
         <div class="tab-text md:ml-4 md:mt-0 mt-4 ml-0">
